@@ -9,5 +9,5 @@ include "header.php"?>
 
 <p>As you can probably see from the domain name, this site is hosted on the <a href="http://www.srcf.net/">SRCF</a>. Here I'll thank the wonderful sysadmins (myself included) for managing the servers and allowing me to host silly sites.</p>
 
-<p>The code of this site can be found on <a href="https://github.com/dalcde/srcf-web">GitHub</a> and (hopefully) mirrored at the corresponding <a href="dalcde.github.io/srcf-web/">GitHub</a> page.</p>
+<p>The code of this site can be found on <a href="https://github.com/dalcde/srcf-web">GitHub</a> and (hopefully) mirrored at the corresponding <a href="https://dalcde.github.io/srcf-web/">GitHub</a> page (with some delay).</p>
 <?php include "footer.php"?>
