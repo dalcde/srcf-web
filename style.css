@@ -46,6 +46,12 @@ header {
     font-weight: bold;
 }
 
+#main h3 {
+    font-size: 100%;
+    font-weight: normal;
+    font-style: italic;
+}
+
 #main a {
     text-decoration: none;
 }
