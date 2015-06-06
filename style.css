@@ -73,7 +73,7 @@ a.hidden {
     font-style: italic;
 }
 
-@media (max-device-width: 40em), (max-width: 40em){
+@media (max-width: 40em){
     #main span.notes-additional {
         display: none;
     }
@@ -86,5 +86,6 @@ a.hidden {
     }
     #header-content a {
         font-size: 100%;
+        padding: 0.4em 0.5em;
     }
 }
