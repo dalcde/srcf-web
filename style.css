@@ -1,0 +1,84 @@
+body {
+    margin: 0px;
+    font-family: Cantarell, Ubuntu, Calibri, sans;
+    background-color: white;
+}
+
+header {
+    text-align: center;
+    width: 100%;
+    border-bottom: thin solid #ddd;
+}
+
+#header-content {
+    padding: 0.4em 0;
+    background: url("logo.svg") no-repeat center left;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+}
+
+#header-content a {
+    text-decoration: none;
+    color: black;
+    font-size: 120%;
+    padding: 0.4em 1em;
+}
+
+#header-content a:hover {
+    background-color: #eee;
+}
+
+#main {
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
+}
+
+#main h1 {
+    font-size: 150%;
+    color: #603;
+}
+
+#main h2 {
+    font-size: 100%;
+    font-weight: bold;
+}
+
+#main a {
+    text-decoration: none;
+}
+
+#main a:hover {
+    text-decoration: underline;
+}
+
+#main span.notes-additional {
+    color: #444;
+}
+
+a.hidden {
+    text-decoration: none;
+    color: inherit;
+}
+
+.maths {
+    font-style: italic;
+}
+
+@media (max-device-width: 40em), (max-width: 40em){
+    #main span.notes-additional {
+        display: none;
+    }
+
+    header {
+        border-bottom: medium solid #ddd;
+    }
+    #header-content {
+        background: none;
+    }
+    #header-content a {
+        font-size: 100%;
+    }
+}
