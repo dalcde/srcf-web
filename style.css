@@ -14,7 +14,7 @@ header {
     padding: 0.4em 0;
     background: url("logo.svg") no-repeat center left;
     width: 100%;
-    max-width: 800px;
+    max-width: 42em;
     margin: auto;
 }
 
@@ -32,7 +32,7 @@ header {
 #main {
     padding: 10px;
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 42em;
     width: 100%;
 }
 
@@ -64,7 +64,7 @@ header {
     color: #444;
 }
 
-a.hidden {
+#main a.hidden, #main a.hidden:hover {
     text-decoration: none;
     color: inherit;
 }
@@ -84,8 +84,32 @@ a.hidden {
     #header-content {
         background: none;
     }
+}
+
+@media (max-width: 40em) and (min-width: 37em) {
+    #header-content a {
+        font-size: 115%;
+        padding: 0.4em 0.9em;
+    }
+}
+
+@media (max-width: 37em) and (min-width: 35em) {
+    #header-content a {
+        font-size: 110%;
+        padding: 0.4em 0.8em;
+    }
+}
+
+@media (max-width: 35em) and (min-width: 32em) {
+    #header-content a {
+        font-size: 105%;
+        padding: 0.4em 0.7em;
+    }
+}
+
+@media (max-width: 32em) {
     #header-content a {
         font-size: 100%;
-        padding: 0.4em 0.5em;
+        padding: 0.4em 0.6em;
     }
 }

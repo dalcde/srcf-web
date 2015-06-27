@@ -4,9 +4,9 @@ include "header.php"?>
 
 <p>Below are the notes I took during lectures in Cambridge. None of this is official (unless otherwise specified). The source code of my notes is also available, which has to be compiled with <a href="notes/header.tex"><code>header.tex</code></a>. It is also available on <a href="http://github.com/dalcde/cam-notes">GitHub</a>.</p>
 
-<p>I have also produced various stripped-down versions (e.g. definition-only) which may be useful for revision. However, keep in mind that they are automatically generated from my regular notes via a poorly-hacked-together <a href="script">shell script</a> and may be nonsensical in certain cases.</p>
+<p>I have also produced various stripped-down versions (e.g. definition-only) which may be useful for revision. However, keep in mind that they are automatically generated from my regular notes via a poorly-hacked-together shell script and may be nonsensical in certain cases.</p>
 
-<p>For the sake of completeness, the example sheets for the course are included as well. These are obviously not my work.</p>
+<p>For the sake of <a class="hidden" href="http://en.wikipedia.org/wiki/Completeness_(logic)">completeness</a>, the example sheets for the courses are included as well. These are <a class="hidden" href="http://theproofistrivial.com">obviously</a> not my work.</p>
 
 <p>Please email any errors to <a href="mailto:dec41@cam.ac.uk">dec41@cam.ac.uk</a> (even better - GitHub pull requests). Typographic suggestions are also welcome.</p>
 
@@ -67,32 +67,64 @@ $SUBJECTS = array(
         )
     ),
     "IB" => array(
+#        "Michaelmas" => array(
+#            "Analysis II" => array(
+#                "lecturer" => "",
+#                "year" => 2015,
+#                "eg" => False,
+#                "official" => null
+#            ),
+#            "Linear Algebra" => array(
+#                "lecturer" => "",
+#                "year" => 2015,
+#                "eg" => False,
+#                "official" => null
+#            ),
+#            "Quantum Mechanics" => array(
+#                "lecturer" => "",
+#                "year" => 2015,
+#                "eg" => False,
+#                "official" => null
+#            ),
+#            "Markov Chains" => array(
+#                "lecturer" => "",
+#                "year" => 2015,
+#                "eg" => False,
+#                "official" => null
+#            ),
+#            "Methods" => array(
+#                "lecturer" => "",
+#                "year" => 2015,
+#                "eg" => False,
+#                "official" => null
+#            )
+#        ),
         "Lent" => array(
-            "Statistics" => array(
-                "lecturer" => "D. Spiegelhalter",
-                "year" => 2015,
-                "eg" => True,
-                "official" => "http://www.statslab.cam.ac.uk/Dept/People/djsteaching/teaching15.html"
-            ),
             "Electromagnetism" => array(
                 "lecturer" => "D. Tong",
                 "year" => 2015,
                 "eg" => True,
                 "official" => "http://www.damtp.cam.ac.uk/user/tong/em.html"
+            ),
+            "Statistics" => array(
+                "lecturer" => "D. Spiegelhalter",
+                "year" => 2015,
+                "eg" => True,
+                "official" => "http://www.statslab.cam.ac.uk/Dept/People/djsteaching/teaching15.html"
             )
         ),
         "Easter" => array(
-            "Optimisation" => array(
-                "lecturer" => "A. Fischer",
-                "year" => 2015,
-                "eg" => True,
-                "official" => "http://www.statslab.cam.ac.uk/~ff271/teaching/opt/"
-            ),
             "Metric and Topological Spaces" => array(
                 "lecturer" => "J. Rassmussen",
                 "year" => 2015,
                 "eg" => True,
                 "official" => null
+            ),
+            "Optimisation" => array(
+                "lecturer" => "A. Fischer",
+                "year" => 2015,
+                "eg" => True,
+                "official" => "http://www.statslab.cam.ac.uk/~ff271/teaching/opt/"
             ),
             "Variational Principles" => array(
                 "lecturer" => "P. K. Townsend",
@@ -122,8 +154,6 @@ $PROPS = array(
     "thp" => array("_thm_proof.pdf", "Theorem-with-proof version"),
     "src" => array(".tex", "Source code")
 );
-#EG_PROP = ["_eg.pdf", "Example sheets", "eg"]
-#OF_PROP = ["", "Official notes", "official notes"]
 
 foreach ($SUBJECTS as $part => $terms) {
     echo "<section>";
@@ -145,11 +175,17 @@ foreach ($SUBJECTS as $part => $terms) {
                 $ext = $stuff[0];
                 $title = $stuff[1];
 
-                echo "<a href='notes/$term_str/$course$ext' title='$title'>$name</a>&nbsp;";
+                $link = "notes/$term_str/$course$ext";
+                $time = date("Y-m-d H:i:s", filemtime($link));
+
+                echo "<a href='$link' title='$title (Last edited $time)'>$name</a>&nbsp;";
             }
 
             if ($details["eg"]) {
-                echo "<a href='notes/$term_str/$course"."_eg.pdf' title='Example sheets'>eg</a>&nbsp;";
+                $link = "notes/$term_str/$course"."_eg.pdf";
+                $time = date("Y-m-d H:i:s", filemtime($link));
+
+                echo "<a href='$link' title='Example sheets (Last edited: $time)'>eg</a>&nbsp;";
             }
 
             if ($details["official"]) {

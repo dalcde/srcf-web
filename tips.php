@@ -8,12 +8,12 @@ include "header.php";
 <ul>
   <li><p>Zero is a <a class="hidden" href="http://en.wikipedia.org/wiki/0_(number)">number</a>. Whenever you divide, make sure you are not dividing by <span class="maths">0</span>. Also, sometimes special cases need to be made for things that are zero (eg. in proving Rolle's theorem, you say if f is constant, result is trivial. If not, ...). When proving L'Hopital's rule, you also have to argue some way that the denominator is not <span class="maths">0</span> in some suitable neighbourhood. Don't miss these.</p></li>
   <li><p>Make sure you know all your bookwork (does this have to be said?), but not those that are non-examinable! <a href="http://www.planetary.org/blogs/jason-davis/2015/20150526-software-glitch-pauses-ls-test.html">Lightsail</a> got stuck in space because it ran out of memory. Don't let that happen to you! (also, a possible solution they proposed seems to be "redirect to <code>/dev/null</code>", which is not a good idea for exams) So read the course syllabus and make sure you don't waste your time and memory.</p></li>
-  <li><p>The word "small" can mean many things. Usually it is either "Taylor exapnd it" or "ignore 2<sup>nd</sup>/3<sup>rd</sup>/... order terms" (mostly 2<sup>nd</sup> order). If not specified, make them vanish when you are too annoyed by them.</p></li>
+  <li><p>The word "small" can mean many things. Usually it is either "Taylor expand it" or "ignore 2<sup>nd</sup>/3<sup>rd</sup>/... order terms" (mostly 2<sup>nd</sup> order). If not specified, make them vanish when you are too annoyed by them.</p></li>
   <li><p>A cartesian product <span class="maths">A × A</span> can be thought of the set of all functions from <span class="maths">{0, 1}</span> to <span class="maths">A</span> (where <span class="maths">(a, b)</span> is the function <span class="maths">f(0) = a, f(1) = b</span>). Of course, you can argue that this statement is formally nonsense, since functions are conventionally defined in terms of ordered pairs. However, this is helpful since it can be easily generalized to higher products, eg. <span class="maths">A<sup>n</sup></span> is the set of all functions from <span class="maths">{0, 1, ..., n - 1}</span> to <span class="maths">A</span>. This is consistent with the common notion of <span class="maths">X<sup>Y</sup></span> being the set of all functions from <span class="maths">Y</span> to <span class="maths">X</span> (becuase <span class="maths">n</span> is totally the set <span class="maths">{0, 1, ..., n - 1}</span>)</p>
   
   <p>This allows you to take infinite "products" or even uncountable products with ease. With this in mind, the last part of 2008 P3 8E is trivial.</p></li>
 
-  <li><p>Read the whole question before starting, especially the hints. Sometimes you might spend a lot of time trying to prove some result, only to see "you may assume that ... is true" below.</p></li>
+  <li><p>Read the whole question before starting, especially the hints. Sometimes you might spend a lot of time trying to prove some results    , only to see "you may assume that ... is true" below.</p></li>
 
   <li><p>When asked to state and prove a result, don't forget to <em>state</em> it.</p></li>
   <li><p>If you think you are very close to finishing a proof but can't think of the final step, write "so the result follows". Maybe they won't notice...<p>
@@ -47,8 +47,8 @@ include "header.php";
 <h2>Differential Equations</h2>
 <ul>
   <li><p>Lots of computation. Be careful. Algebraic mistakes are easy to make.</p></li>
-  <li><p>What asked to sketch contours and phase diagrams, just plot a few points/arrows/lines you know are correct and join them together with a curve.</p></li>
-  <li><p>When the roots of the characteristic equation of your second-order linear ODE has complex roots, the general solution is <span class="maths">e<sup>k<b style="color:red">t</b></sup>(A cos ωt + B sin ωt)</span>, not <span class="maths">e<sup>k</sup>(A cos ωt + B sin ωt)</span>.</p></li>
+  <li><p>When asked to sketch contours and phase diagrams, just plot a few points/arrows/lines you know are correct and join them together with a curve.</p></li>
+  <li><p>When the characteristic equation of your second-order linear ODE has complex roots, the general solution is <span class="maths">e<sup>k<b style="color:red">t</b></sup>(A cos ωt + B sin ωt)</span>, not <span class="maths">e<sup>k</sup>(A cos ωt + B sin ωt)</span>.</p></li>
   <li><p>If you get stuck on a differential equation, try the simplest methods. Is it separable? Can you use an integrating factor? These are usually the easiest to miss.</p></li>
 </ul>
 
@@ -67,7 +67,7 @@ include "header.php";
 <ul>
   <li><p>When asked to find the orbits of <span class="maths">A × A × A</span> (or something similar) under the action of a group <span class="maths">G</span>, don't forget elements of the form <span class="maths">(x, x, y)</span> or <span class="maths">(x, x, x)</span> with repeated elements.</p></li>
   <li><p>When asked to find groups with weird properties, try <span class="maths">C<sub>2</sub>×C<sub>2</sub></span> or <span class="maths">S<sub>3</sub></span> (which is the same as <span class="maths">D<sub>6</sub></span>, but <span class="maths">S<sub>3</sub></span> is usually easier to present). If these don't work, try <span class="maths">Q<sub>8</sub></span> or <span class="maths">D<sub>8</sub></span>. If everything goes wrong, <span class="maths">A<sub>5</sub></span> being a simple group might be helpful, or <span class="maths">S<sub>5</sub></span>, which contains <span class="maths">A<sub>5</sub></span>. There really aren't many groups out there<sup>[<a href="http://en.wikipedia.org/wiki/Edsel_Citation">citation needed</a>]</sup>.
-  <li><p>When studying Mobius transformations on <span class="maths">𝔽<sub>p</sub></span>, most results proved in <span class="maths">ℂ</span> can be applied, but you have to make sure they do not rely on properties of <span class="maths">ℂ</span>. For instance, you cannot use the Jordan normal form theorem, since it relies on finding an eigenvector basis, which relies solving the characteristic equation, but unlike <span class="maths">ℂ</span>, polynomial in <span class="maths">𝔽<sub>p</sub></span> need not have all the roots you need.</p></li>
+  <li><p>When studying Mobius transformations on <span class="maths">𝔽<sub>p</sub></span>, most results proved in <span class="maths">ℂ</span> can be applied, but you have to make sure they do not rely on properties of <span class="maths">ℂ</span>. For instance, you cannot use the Jordan normal form theorem, since it relies on finding an eigenvector basis, which relies on solving the characteristic equation, but unlike <span class="maths">ℂ</span>, polynomial in <span class="maths">𝔽<sub>p</sub></span> need not have all the roots you need.</p></li>
 </ul>
 
 <h2>Vector Calculus</h2>
@@ -88,7 +88,7 @@ include "header.php";
 <h2>Dynamics and Relativity</h2>
 <ul>
   <li><p>Latitude is measured from the equator, but the <span class="maths">θ</span> in spherical coordinates is measured from vertical.</p></li>
-  <li><p>When solving relativistic dynamics questions, most of the time you don't need to use the Center of Momenutm frame (unless it tells you to). Instead, you use the conservation of momentum equation directly. Most likely you will have to dot it with itself, and sometimes you want to use the conservation of energy/3-momenutm individually, or a combination fo both.</p></li>
+  <li><p>When solving relativistic dynamics questions, most of the time you don't need to use the Center of Momenutm frame (unless it tells you to). Instead, you use the conservation of momentum equation directly. Most likely you will have to dot it with itself, and sometimes you want to use the conservation of energy/3-momenutm individually, or a combination of both.</p></li>
   <li><p>Newton's second law is basically the same as the conservation of energy, except that when using the conservation of energy, you have an additional piece of information about the initial energy. So if you are given the initial energy, it is often easier to user the conservation of energy directly instead of Newton's law.</p></li>
   <li><p>Just in case they decide to be really annoying, make sure you know all those obscure terms defined in lectures, such as the periapsis, apoapsis, apsides, perihelion, aphelion, perigge and apogee.</p></li>
 </ul>
