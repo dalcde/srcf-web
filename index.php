@@ -10,6 +10,8 @@ include "header.php"?>
 
 <p>Please email any errors to <a href="mailto:dec41@cam.ac.uk">dec41@cam.ac.uk</a> (even better - GitHub pull requests). Typographic suggestions are also welcome.</p>
 
+<p><em>Note that I upload my notes as I produce them, and fix and polish them when I have time. Hence they in their current form may or may not be suitable for human consumption. Those that are proven Cat. 1 carcinogen have been greyed out, and it is probably not a very good idea to consume these. Keep in mind that the others may also have occasional typos and errors, and prolonged consumption may have detrimental health effects.</em></p>
+
 <?php
 $SUBJECTS = array(
     "IA" => array(
@@ -18,25 +20,29 @@ $SUBJECTS = array(
                 "lecturer" => "J. Goedecke",
                 "year" => 2014,
                 "eg" => True,
-                "official" => "http://www.dpmms.cam.ac.uk/~jg352/pdf/GroupsNotes.pdf"
+                "official" => "http://www.dpmms.cam.ac.uk/~jg352/pdf/GroupsNotes.pdf",
+                "ready" => True
             ),
             "Numbers and Sets" => array(
                 "lecturer" => "A. G. Thomason",
                 "year" => 2014,
                 "eg" => True,
-                "official" => null
+                "official" => null,
+                "ready" => True
             ),
             "Differential Equations" => array(
                 "lecturer" => "M. G. Worster",
                 "year" => 2014,
                 "eg" => True,
-                "official" => null
+                "official" => null,
+                "ready" => True
             ),
             "Vectors and Matrices" => array(
                 "lecturer" => "N. Peake",
                 "year" => 2014,
                 "eg" => True,
-                "official" => null
+                "official" => null,
+                "ready" => True
             )
         ),
         "Lent" => array(
@@ -44,25 +50,29 @@ $SUBJECTS = array(
                 "lecturer" => "W. T. Gowers",
                 "year" => 2015,
                 "eg" => True,
-                "official" => null
+                "official" => null,
+                "ready" => True
             ),
             "Probability" => array(
                 "lecturer" => "R. R. Weber",
                 "year" => 2015,
                 "eg" => True,
-                "official" => "http://www.statslab.cam.ac.uk/~rrw1/prob/index.html"
+                "official" => "http://www.statslab.cam.ac.uk/~rrw1/prob/index.html",
+                "ready" => True
             ),
             "Dynamics and Relativity" => array(
                 "lecturer" => "G. I. Ogilvie",
                 "year" => 2015,
                 "eg" => True,
-                "official" => null
+                "official" => null,
+                "ready" => True
             ),
             "Vector Calculus" => array(
                 "lecturer" => "B. Allanach",
                 "year" => 2015,
                 "eg" => True,
-                "official" => "http://users.hepforge.org/~allanach/teaching.html"
+                "official" => "http://users.hepforge.org/~allanach/teaching.html",
+                "ready" => True
             )
         )
     ),
@@ -72,31 +82,36 @@ $SUBJECTS = array(
 #                "lecturer" => "",
 #                "year" => 2015,
 #                "eg" => False,
-#                "official" => null
+#                "official" => null,
+#                "ready" => False
 #            ),
 #            "Linear Algebra" => array(
 #                "lecturer" => "",
 #                "year" => 2015,
 #                "eg" => False,
-#                "official" => null
+#                "official" => null,
+#                "ready" => False
 #            ),
 #            "Quantum Mechanics" => array(
 #                "lecturer" => "",
 #                "year" => 2015,
 #                "eg" => False,
-#                "official" => null
+#                "official" => null,
+#                "ready" => False
 #            ),
 #            "Markov Chains" => array(
 #                "lecturer" => "",
 #                "year" => 2015,
 #                "eg" => False,
-#                "official" => null
+#                "official" => null,
+#                "ready" => False
 #            ),
 #            "Methods" => array(
 #                "lecturer" => "",
 #                "year" => 2015,
 #                "eg" => False,
-#                "official" => null
+#                "official" => null,
+#                "ready" => False
 #            )
 #        ),
         "Lent" => array(
@@ -104,13 +119,15 @@ $SUBJECTS = array(
                 "lecturer" => "D. Tong",
                 "year" => 2015,
                 "eg" => True,
-                "official" => "http://www.damtp.cam.ac.uk/user/tong/em.html"
+                "official" => "http://www.damtp.cam.ac.uk/user/tong/justem.html",
+                "ready" => True
             ),
             "Statistics" => array(
                 "lecturer" => "D. Spiegelhalter",
                 "year" => 2015,
                 "eg" => True,
-                "official" => "http://www.statslab.cam.ac.uk/Dept/People/djsteaching/teaching15.html"
+                "official" => "http://www.statslab.cam.ac.uk/Dept/People/djsteaching/teaching15.html",
+                "ready" => False
             )
         ),
         "Easter" => array(
@@ -118,19 +135,22 @@ $SUBJECTS = array(
                 "lecturer" => "J. Rassmussen",
                 "year" => 2015,
                 "eg" => True,
-                "official" => null
+                "official" => null,
+                "ready" => True
             ),
             "Optimisation" => array(
                 "lecturer" => "A. Fischer",
                 "year" => 2015,
                 "eg" => True,
-                "official" => "http://www.statslab.cam.ac.uk/~ff271/teaching/opt/"
+                "official" => "http://www.statslab.cam.ac.uk/~ff271/teaching/opt/",
+                "ready" => True
             ),
             "Variational Principles" => array(
                 "lecturer" => "P. K. Townsend",
                 "year" => 2015,
                 "eg" => True,
-                "official" => "http://www.damtp.cam.ac.uk/user/examples/B6La.pdf"
+                "official" => "http://www.damtp.cam.ac.uk/user/examples/B6La.pdf",
+                "ready" => True
             )
         )
     ),
@@ -140,7 +160,8 @@ $SUBJECTS = array(
                 "lecturer" => "I. B. Leader",
                 "year" => 2015,
                 "eg" => True,
-                "official" => null
+                "official" => null,
+                "ready" => True
             )
         )
     )
@@ -163,10 +184,11 @@ foreach ($SUBJECTS as $part => $terms) {
         foreach ($courses as $course => $details ) {
             $year = $details["year"];
             $lecturer = $details["lecturer"];
+            $style = $details["ready"] ? "notes-item" : "notes-item notes-item-unready";
 
             $term_str = $part."_".substr($term, 0, 1);
 
-            echo "<span class='notes-item'>$course <span class='notes-additional'>($year, $lecturer)</span> -&nbsp;";
+            echo "<span class='$style'>$course <span class='notes-additional'>($year, $lecturer)</span> -&nbsp;";
 
             $course = strtolower($course);
             $course = str_replace(" ", "_", $course);
@@ -198,5 +220,15 @@ foreach ($SUBJECTS as $part => $terms) {
     echo "</section>";
 }
 ?>
+<section>
+<h1>External resources</h1>
+<p>Notes from other sources I like.</p>
+<ul>
+  <li><a href="http://tartarus.org/gareth/maths/notes/">Gareth Taylor's</a> notes. Mostly pure mathematics.</a></li>
+  <li><a href="http://www.damtp.cam.ac.uk/user/tong/teaching.html">David Tong's</a> notes. Theoretical physics.</a></li>
+  <li><a href="http://www.damtp.cam.ac.uk/user/eal40/teach/QM2012/QMroot.html">Eugene Lim's</a> notes. IB Quantum mechanics.</a></li>
+  <li><a href="http://www.archim.org.uk/notes.php">Archimedeans'</a> notes. Miscellaneous topics from different sources, of variable quality.</a></li>
+</ul>
+</section>
 
 <?php include "footer.php"?>

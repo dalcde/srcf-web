@@ -10,6 +10,10 @@ header {
     border-bottom: thin solid #ddd;
 }
 
+ul {
+    list-style: circle;
+}
+
 #header-content {
     padding: 0.4em 0;
     background: url("logo.svg") no-repeat center left;
@@ -34,6 +38,7 @@ header {
     margin: 0 auto;
     max-width: 42em;
     width: 100%;
+    box-sizing: border-box;
 }
 
 #main h1 {
@@ -62,6 +67,22 @@ header {
 
 #main span.notes-additional {
     color: #444;
+}
+
+#main span.notes-item-unready {
+    color: #666;
+}
+
+#main span.notes-item-unready a {
+    color: #5f5ff4;
+}
+
+#main span.notes-item-unready a:visited {
+    color: #946fb6;
+}
+
+#main span.notes-item-unready span.notes-additional {
+    color: #8a8a8a;
 }
 
 #main a.hidden, #main a.hidden:hover {
