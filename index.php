@@ -13,160 +13,58 @@ include "header.php"?>
 <p><em>Note that I upload my notes as I produce them, and fix and polish them when I have time. Hence they in their current form may or may not be suitable for human consumption. Those that are proven Cat. 1 carcinogen have been greyed out, and it is probably not a very good idea to consume these. Keep in mind that the others may also have occasional typos and errors, and prolonged consumption may have detrimental health effects.</em></p>
 
 <?php
-$SUBJECTS = array(
-    "IA" => array(
-        "Michaelmas" => array(
-            "Groups" => array(
-                "lecturer" => "J. Goedecke",
-                "year" => 2014,
-                "eg" => True,
-                "official" => "http://www.dpmms.cam.ac.uk/~jg352/pdf/GroupsNotes.pdf",
-                "ready" => True
-            ),
-            "Numbers and Sets" => array(
-                "lecturer" => "A. G. Thomason",
-                "year" => 2014,
-                "eg" => True,
-                "official" => null,
-                "ready" => True
-            ),
-            "Differential Equations" => array(
-                "lecturer" => "M. G. Worster",
-                "year" => 2014,
-                "eg" => True,
-                "official" => null,
-                "ready" => True
-            ),
-            "Vectors and Matrices" => array(
-                "lecturer" => "N. Peake",
-                "year" => 2014,
-                "eg" => True,
-                "official" => null,
-                "ready" => True
-            )
-        ),
-        "Lent" => array(
-            "Analysis I" => array(
-                "lecturer" => "W. T. Gowers",
-                "year" => 2015,
-                "eg" => True,
-                "official" => null,
-                "ready" => True
-            ),
-            "Probability" => array(
-                "lecturer" => "R. R. Weber",
-                "year" => 2015,
-                "eg" => True,
-                "official" => "http://www.statslab.cam.ac.uk/~rrw1/prob/index.html",
-                "ready" => True
-            ),
-            "Dynamics and Relativity" => array(
-                "lecturer" => "G. I. Ogilvie",
-                "year" => 2015,
-                "eg" => True,
-                "official" => null,
-                "ready" => True
-            ),
-            "Vector Calculus" => array(
-                "lecturer" => "B. Allanach",
-                "year" => 2015,
-                "eg" => True,
-                "official" => "http://users.hepforge.org/~allanach/teaching.html",
-                "ready" => True
-            )
-        )
-    ),
-    "IB" => array(
-#        "Michaelmas" => array(
-#            "Analysis II" => array(
-#                "lecturer" => "",
-#                "year" => 2015,
-#                "eg" => False,
-#                "official" => null,
-#                "ready" => False
-#            ),
-#            "Linear Algebra" => array(
-#                "lecturer" => "",
-#                "year" => 2015,
-#                "eg" => False,
-#                "official" => null,
-#                "ready" => False
-#            ),
-#            "Quantum Mechanics" => array(
-#                "lecturer" => "",
-#                "year" => 2015,
-#                "eg" => False,
-#                "official" => null,
-#                "ready" => False
-#            ),
-#            "Markov Chains" => array(
-#                "lecturer" => "",
-#                "year" => 2015,
-#                "eg" => False,
-#                "official" => null,
-#                "ready" => False
-#            ),
-#            "Methods" => array(
-#                "lecturer" => "",
-#                "year" => 2015,
-#                "eg" => False,
-#                "official" => null,
-#                "ready" => False
-#            )
-#        ),
-        "Lent" => array(
-            "Electromagnetism" => array(
-                "lecturer" => "D. Tong",
-                "year" => 2015,
-                "eg" => True,
-                "official" => "http://www.damtp.cam.ac.uk/user/tong/justem.html",
-                "ready" => True
-            ),
-            "Statistics" => array(
-                "lecturer" => "D. Spiegelhalter",
-                "year" => 2015,
-                "eg" => True,
-                "official" => "http://www.statslab.cam.ac.uk/Dept/People/djsteaching/teaching15.html",
-                "ready" => False
-            )
-        ),
-        "Easter" => array(
-            "Metric and Topological Spaces" => array(
-                "lecturer" => "J. Rassmussen",
-                "year" => 2015,
-                "eg" => True,
-                "official" => null,
-                "ready" => True
-            ),
-            "Optimisation" => array(
-                "lecturer" => "A. Fischer",
-                "year" => 2015,
-                "eg" => True,
-                "official" => "http://www.statslab.cam.ac.uk/~ff271/teaching/opt/",
-                "ready" => True
-            ),
-            "Variational Principles" => array(
-                "lecturer" => "P. K. Townsend",
-                "year" => 2015,
-                "eg" => True,
-                "official" => "http://www.damtp.cam.ac.uk/user/examples/B6La.pdf",
-                "ready" => True
-            )
-        )
-    ),
-    "II" => array(
-        "Lent" => array(
-            "Logic and Set Theory" => array(
-                "lecturer" => "I. B. Leader",
-                "year" => 2015,
-                "eg" => True,
-                "official" => null,
-                "ready" => True
-            )
-        )
-    )
-);
+$subjects = array();
 
+$directory = new RecursiveDirectoryIterator('notes/');
+$iterator = new RecursiveIteratorIterator($directory);
+$regex = new RegexIterator($iterator, '/^.+\.tex$/i', RecursiveRegexIterator::GET_MATCH);
+
+foreach ($regex as $item=>$object) {
+    if (basename($item) == "header.tex") {
+        continue;
+    }
+    $results = array();
+    $count = 0;
+    foreach (file($item) as $line) {
+        if (preg_match('/\\\\def\\\\n([a-z]*) *\\{(.*)\\}/', $line, $matches)) {
+            $results[$matches[1]] = $matches[2];
+        }
+        $count++;
+        if (count > 15) {
+            break;
+        }
+    }
+    if (!isset($subjects[$results["part"]])) {
+        $subjects[$results["part"]] = array();
+    }
+    if (!isset($subjects[$results["part"]][$results["term"]])) {
+        $subjects[$results["part"]][$results["term"]] = array();
+    }
+    $subjects[$results["part"]][$results["term"]][$item] = $results;
+}
+
+function sort_terms($a, $b) {
+    if ($a == $b) {
+        return 0;
+    }
+    if ($a == "Michaelmas"){
+        return -1;
+    } else if ($a == "Lent" && $b == "Easter") {
+        return -1;
+    } else {
+        return 1;
+    }
+}
+
+function sort_courses ($a, $b) {
+    if ($a["course"] == $b["course"]) {
+        if ($a["year"] == $b["year"]) {
+            return 0;
+        }
+        return ($a["year"] < $b["year"]) ? -1 : 1;
+    }
+    return ($a["course"] < $b["course"]) ? -1 : 1;
+}
 
 $PROPS = array( 
     "full" => array(".pdf", "Full version"),
@@ -176,41 +74,41 @@ $PROPS = array(
     "src" => array(".tex", "Source code")
 );
 
-foreach ($SUBJECTS as $part => $terms) {
+ksort($subjects);
+foreach ($subjects as $part => $terms) {
     echo "<section>";
     echo "<h1>Part $part</h1>";
+
+    uksort($terms, sort_terms);
     foreach ($terms as $term => $courses ) {
         echo "<h2>$term Term</h2>";
-        foreach ($courses as $course => $details ) {
+
+        uasort($courses, sort_courses);
+        foreach ($courses as $path => $details ) {
             $year = $details["year"];
             $lecturer = $details["lecturer"];
-            $style = $details["ready"] ? "notes-item" : "notes-item notes-item-unready";
-
-            $term_str = $part."_".substr($term, 0, 1);
+            $style = isset($details["notready"]) ? "notes-item notes-item-unready" : "notes-item";
+            $course = $details["course"];
 
             echo "<span class='$style'>$course <span class='notes-additional'>($year, $lecturer)</span> -&nbsp;";
 
-            $course = strtolower($course);
-            $course = str_replace(" ", "_", $course);
+            $link = substr($path, 0, -4);
 
             foreach ($PROPS as $name => $stuff) {
                 $ext = $stuff[0];
                 $title = $stuff[1];
+                $time = date("Y-m-d H:i:s", filemtime("$link$ext"));
 
-                $link = "notes/$term_str/$course$ext";
-                $time = date("Y-m-d H:i:s", filemtime($link));
-
-                echo "<a href='$link' title='$title (Last edited $time)'>$name</a>&nbsp;";
+                echo "<a href='$link$ext' title='$title (Last edited $time)'>$name</a>&nbsp;";
             }
 
-            if ($details["eg"]) {
-                $link = "notes/$term_str/$course"."_eg.pdf";
-                $time = date("Y-m-d H:i:s", filemtime($link));
-
+            $linkeg = $link."_eg.pdf";
+            if (file_exists($linkeg)) {
+                $time = date("Y-m-d H:i:s", filemtime($linkeg));
                 echo "<a href='$link' title='Example sheets (Last edited: $time)'>eg</a>&nbsp;";
             }
 
-            if ($details["official"]) {
+            if (isset($details["official"])) {
                 $official = $details["official"];
                 echo "<a href='$official' title='Official notes'>official-notes</a>";
             }
