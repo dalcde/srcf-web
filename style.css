@@ -94,6 +94,17 @@ ul {
     font-style: italic;
 }
 
+.error {
+    color: #400;
+    font-size: 150%;
+}
+
+.error-header {
+    color: #b00;
+    font-weight: bold;
+    font-size: 200%;
+}
+
 @media (max-width: 40em){
     #main span.notes-additional {
         display: none;

@@ -1,1 +1,5 @@
 AddType text/html .php
+Options FollowSymLinks MultiViews
+
+ErrorDocument 403 /error.php
+ErrorDocument 404 /error.php

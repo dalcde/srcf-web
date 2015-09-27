@@ -44,7 +44,6 @@ include "header.php"?>
 <div>
   <h2>What is your favorite text editor/mail client/version control system? -vvvvv</h2>
   <p><code>FAQ version 3.14.1-5 build 20150314082350</code></p>
-  </p>
 </div>
 <div>
   <h2>What is your favorite xkcd?</h2>
