@@ -5,7 +5,15 @@ include "header.php";
 <h1> Past Schedules </h1>
 <p>
 When I'm stuck on a past paper question, I'm frequently frustrated by the fact that it might not be because I'm stupid, but because it's no longer taught. So I searched through the <a href="http://archive.org">Internet Archive</a> and dug out the past course specifications, and made a changelog. The following list shows how the exam paper of that year differs from the previous year since 2007. This is obtained purely from diff-ing the schedules provided, and may not accurately portrait what was actually taught.</p>
+<h2>Part IB</h2>
+Haven't found the time to do any detailed analysis, but here are some random notes I've noted. These are not guaranteed to be correct and are very disorganized.
+<ul>
+  <li>Before 2010, Variational Principles did not exist. Instead, the parts on Euler-Lagrange equations and Lagrange multipliers were put in Methods (the physicsy things and second variation are not found anywhere afaik). As a result, before 2010, Methods did not include the PDEs on unbounded domains part. Before 2007, Methods did not include Fourier transforms, and instead contained the Cartesian tensor things from IA Vector Calculus.</li>
+  <li>Before 2010, Numerical Analysis was a 12 lecture course and did not include the part on ODE's. Relevant past paper questions can be found in the Part II Numerical Analysis course.</li>
+</ul>
+
 <h2>Part IA</h2>
+I am not updating any changes from 2016 onwards, since I'm no longer doing IA, unless some kind soul emails me about the changes they have found.
 <h3>Vectors and matrices</h3>
 <ul>
   <li>2008:&thinsp;<s>Born out of thin air.</s> Split from <i>Algebra and Geometry</i> and contains most non-groups contents from Algebra and geometry.</li>

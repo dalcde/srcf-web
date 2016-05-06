@@ -1,3 +1,4 @@
+<?php $termtime=false?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,7 @@
 <body>
 <header>
   <div id="header-content">
-    <a href="/home">Home</a>&nbsp;<a href="/">Notes</a>&nbsp;<a href="/faq">FAQ</a>
-    <a href="/random">Rand</a>&nbsp;<a href="/tips">Tips</a>&nbsp;<a href="/history">Hist</a>
+    <a href="/home">Home</a>&nbsp;<a href="/">Notes</a>&nbsp;<a href="/faq">FAQ</a>&nbsp;<a href="/history">Hist</a>
   </div>
 </header>
 <div id="main">
