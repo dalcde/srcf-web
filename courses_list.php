@@ -32,6 +32,9 @@ foreach ($regex as $item=>$object) {
     if (basename($item) == "header.tex") {
         continue;
     }
+    if (!preg_match('/notes\/I[ABI]_[MLE]/', $item)){
+        continue;
+    }
     $results = array();
     $count = 0;
     foreach (file($item) as $line) {
@@ -42,6 +45,10 @@ foreach ($regex as $item=>$object) {
         if (count > 15) {
             break;
         }
+    }
+    $type = $results["part"]."_".substr($results["term"],0,1);
+    if (!preg_match('/notes\/'.$type.'/', $item)){
+        continue;
     }
     if (!isset($subjects[$results["part"]])) {
         $subjects[$results["part"]] = array();
@@ -74,12 +81,56 @@ foreach ($subjects as $part => $terms) {
         foreach ($courses as $path => $details ) {
             $year = $details["year"];
             $lecturer = $details["lecturer"];
-            $style = isset($details["notready"]) ? "notes-item notes-item-unready" : "notes-item";
+            $style = isset($details["notready"]) ? ($termtime ? "notes-item notes-item-unready" : "notes-item notes-item-old") : "notes-item";
             $course = $details["course"];
 
-            echo "<span class='$style'>$course <span class='notes-additional'>($year, $lecturer)</span> -&nbsp;";
+            if (isset($details["lectures"]) && $termtime) {
+                $lectures = explode(".", $details["lectures"]);
+                $dates = $lectures[0];
+                $time = $lectures[1];
+                $time = $time == "12" ? "12pm" : $time."am";
 
+                $edit = filemtime($path);
+                $edit_day = date("N", $edit);
+
+                if ($dates == "MWF") {
+                    $next = min(strtotime("next Monday"   , $edit),
+                                strtotime("next Wednesday", $edit),
+                                strtotime("next Friday"   , $edit));
+                    if (($edit_day == 1 || $edit_day == 3 || $edit_day == 5) &&
+                        (strtotime($time, $edit) > $edit)) {
+                            $next = $edit;
+                    }
+
+                } else if ($dates == "TTS") {
+                    $next = min(strtotime("next Tuesday"  , $edit),
+                                strtotime("next Thursday" , $edit),
+                                strtotime("next Saturday" , $edit));
+
+                    if (($edit_day == 2 || $edit_day == 4 || $edit_day == 6) &&
+                        (strtotime($time, $edit) > $edit)) {
+                        $next = $edit;
+                    }
+
+                } else if ($dates == "TT") {
+                    $next = min(strtotime("next Tuesday"  , $edit),
+                                strtotime("next Thursday" , $edit));
+
+                    if (($edit_day == 2 || $edit_day == 4) &&
+                        (strtotime($time, $edit) > $edit)) {
+                        $next = $edit;
+                    }
+                }
+                $next = strtotime($time, $next);
+                $today = strtotime("today");
+                if (time() > $next) {
+                    $style = "notes-item notes-item-old";
+                }
+            }
             $link = substr($path, 0, -4);
+            $slink = substr($link, 6);
+            echo "<span class='$style'><a href='/h/$slink'>$course</a> <span class='notes-additional'>($year, $lecturer)</span> -&nbsp;";
+
 
             foreach ($PROPS as $name => $stuff) {
                 $ext = $stuff[0];

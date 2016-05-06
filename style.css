@@ -1,6 +1,6 @@
 body {
     margin: 0px;
-    font-family: Cantarell, Ubuntu, Calibri, sans;
+    font-family: Cantarell, Calibri, sans-serif;
     background-color: white;
 }
 
@@ -70,19 +70,31 @@ ul {
 }
 
 #main span.notes-item-unready {
+    font-weight: bold;
     color: #666;
 }
 
+#main span.notes-item-old {
+    font-weight: normal;
+    color: #666;
+}
+
+#main span.notes-item-old a,
 #main span.notes-item-unready a {
     color: #5f5ff4;
+    font-weight: normal;
 }
 
+#main span.notes-item-old a:visited,
 #main span.notes-item-unready a:visited {
     color: #946fb6;
+    font-weight: normal;
 }
 
+#main span.notes-item-old span.notes-additional,
 #main span.notes-item-unready span.notes-additional {
     color: #8a8a8a;
+    font-weight: normal;
 }
 
 #main a.hidden, #main a.hidden:hover {
@@ -116,32 +128,72 @@ ul {
     #header-content {
         background: none;
     }
-}
-
-@media (max-width: 40em) and (min-width: 37em) {
     #header-content a {
-        font-size: 115%;
+        font-size: 110%;
         padding: 0.4em 0.9em;
     }
 }
 
-@media (max-width: 37em) and (min-width: 35em) {
-    #header-content a {
-        font-size: 110%;
-        padding: 0.4em 0.8em;
-    }
+ul.disp-toc {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-@media (max-width: 35em) and (min-width: 32em) {
-    #header-content a {
-        font-size: 105%;
-        padding: 0.4em 0.7em;
-    }
+ul.disp-toc li{
+    margin-top: 1.2em;
+}
+ul.disp-toc-sub {
+    list-style-type: none;
 }
 
-@media (max-width: 32em) {
-    #header-content a {
-        font-size: 100%;
-        padding: 0.4em 0.6em;
-    }
+ul.disp-toc-sub li{
+    margin-top: 0.6em;
+}
+div.disp-header {
+    font-style: italic;
+}
+p.disp-header-left {
+    float: left;
+    margin-bottom: 0px;
+}
+p.disp-header-right {
+    float: right;
+    margin-bottom: 0px;
+}
+p.disp-nav-left {
+    float: left;
+    text-align: left;
+    width: 33.3333%
+}
+p.disp-nav-center {
+    float: left;
+    text-align: center;
+    width: 33.3333%
+}
+p.disp-nav-right {
+    float: left;
+    text-align: right;
+    width: 33.3333%
+}
+div.disp-header {
+    overflow: hidden;
+}
+div.disp-nav {
+    overflow: hidden;
+    padding-bottom: 1em;
+}
+div.disp-toc-header {
+    text-align: center;
+}
+#main div.disp-toc-header h1 {
+    font-size: 180%;
+    color: #000;
+}
+#main h1.disp-toc-head{ 
+    color: #000;
+    font-weight: normal;
+}
+div.pf.w0 {
+    margin-bottom: 1em;
 }
