@@ -2,8 +2,9 @@
 $title = "Maths Lecture Notes";
 include "header.php"?>
 
-<p>Below are the notes I took during lectures in Cambridge. None of this is official (unless otherwise specified). Included as well are stripped-down versions (eg. definition-only; script-generated and doesn't necessarily make sense), example sheets, and the source code. The source code has to be compiled with <a href="notes/header.tex"><code>header.tex</code></a>, and is also available on <a href="http://github.com/dalcde/cam-notes">GitHub</a>.</p>
+<p class="notice-alert">From next year onwards, the lecture notes will be uploaded only after the courses finish, because people seem to be using them to skip lectures. <a href="/about">Click here</a> to see more.</p>
 
+<p>Below are the notes I took during lectures in Cambridge. None of this is official (unless otherwise specified). Included as well are stripped-down versions (eg. definition-only; script-generated and doesn't necessarily make sense), example sheets, and the source code. The source code has to be compiled with <a href="notes/header.tex"><code>header.tex</code></a>, and is also available on <a href="http://github.com/dalcde/cam-notes">GitHub</a>.</p>
 <?php
   if ($termtime) {
 ?>
@@ -25,6 +26,8 @@ include "header.php"?>
 <p>Nevertheless, please email any comments to <a href="mailto:dec41@cam.ac.uk">dec41@cam.ac.uk</a>. Feel free to point out errors or unclear explanations, as well as general typographic suggestions. Even better, send a GitHub <a href="http://github.com/dalcde/cam-notes/pulls">pull request</a>.</p>
 
 <p>Here I'd like to thank the lecturers who delivered the (usually) amazing lectures, and all of those who helpfully pointed out my mistakes and typos.</p>
+
+<p>Usual disclaimer: The notes have been continuously modified since the lectures have taken place, and do not necessarily accurately reflect what the lecturer said or thought. In particular, all errors are (almost certainly) mine.</p>
 
 </section>
 <section>

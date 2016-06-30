@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /notes/*/*_def.pdf
+Disallow: /notes/*/*_thm.pdf
+Disallow: /notes/*/*_thm_proof.pdf

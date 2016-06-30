@@ -179,7 +179,7 @@ p.disp-nav-right {
 div.disp-header {
     overflow: hidden;
 }
-div.disp-nav {
+nav.disp-nav {
     overflow: hidden;
     padding-bottom: 1em;
 }
@@ -196,4 +196,8 @@ div.disp-toc-header {
 }
 div.pf.w0 {
     margin-bottom: 1em;
+}
+#main p.notice-alert {
+    color: red;
+    font-weight: bold;
 }

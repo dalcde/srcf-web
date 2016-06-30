@@ -10,6 +10,7 @@ Haven't found the time to do any detailed analysis, but here are some random not
 <ul>
   <li>Before 2010, Variational Principles did not exist. Instead, the parts on Euler-Lagrange equations and Lagrange multipliers were put in Methods (the physicsy things and second variation are not found anywhere afaik). As a result, before 2010, Methods did not include the PDEs on unbounded domains part. Before 2007, Methods did not include Fourier transforms, and instead contained the Cartesian tensor things from IA Vector Calculus.</li>
   <li>Before 2010, Numerical Analysis was a 12 lecture course and did not include the part on ODE's. Relevant past paper questions can be found in the Part II Numerical Analysis course.</li>
+  <li>Before 2015, Electromagnetism did not have the part on relativity and had something on Drude's model of conductivity.</li>
 </ul>
 
 <h2>Part IA</h2>

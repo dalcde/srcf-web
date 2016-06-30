@@ -6,7 +6,7 @@
   <meta name="author" content="Dexter Chua" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
-  <link rel="canonical" href="https://dec41.user.srcf.net/<?php echo basename($_SERVER['REQUEST_URI'], ".php") ?>" />
+  <link rel="canonical" href="https://dec41.user.srcf.net<?php echo $_SERVER['REQUEST_URI'] ?>" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="shortcut icon" href="/favicon.ico?" />
 
@@ -14,8 +14,8 @@
 </head>
 <body>
 <header>
-  <div id="header-content">
+  <nav id="header-content">
     <a href="/home">Home</a>&nbsp;<a href="/">Notes</a>&nbsp;<a href="/faq">FAQ</a>&nbsp;<a href="/history">Hist</a>
-  </div>
+  </nav>
 </header>
 <div id="main">

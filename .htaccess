@@ -3,3 +3,6 @@ Options FollowSymLinks MultiViews
 
 ErrorDocument 403 /error.php
 ErrorDocument 404 /error.php
+
+RewriteEngine on
+RewriteRule ^html_notes/(.*)$ /h/$1 [R=301,NC,L]

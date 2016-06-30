@@ -1,10 +1,17 @@
 <?php 
 $ALIASES = array(
+  "de" => array("IA_M", "differential_equations"),
   "vm" => array("IA_M", "vectors_and_matrices"),
   "vc" => array("IA_L", "vector_calculus"),
-  "grm" => array("IB_L", "groups_rings_and_modules"),
   "ca" => array("IB_L", "complex_analysis"),
   "cm" => array("IB_L", "complex_methods"),
+  "em" => array("IB_L", "electromagnetism"),
+  "grm" => array("IB_L", "groups_rings_and_modules"),
+  "la" => array("IB_M", "linear_algebra"),
+  "na" => array("IB_L", "numerical_analysis"),
+  "stat" => array("IB_L", "statistics"),
+  "vp" => array("IB_E", "variational_principles"),
+  "lst" => array("II_L", "logic_and_set_theory"),
 );
 
 $request = explode("/", $_SERVER["REQUEST_URI"]);
@@ -39,8 +46,33 @@ if (!$handle) {
 $raw_count = 2;
 $sec_count = 0;
 $subsec_count = 0;
-$title = "";
-$lecturer = "";
+
+function lookupSec($secno) {
+  global $sections;
+  $s = explode("_", $secno);
+  foreach ($sections as $section) {
+    if ($section["number"] === $s[0]) {
+      return $section;
+    }
+  }
+  return NULL;
+}
+function lookupObj($secno) {
+  global $sections;
+  $s = explode("_", $secno);
+  $section = lookupSec($secno);
+  if (count($s) > 1) {
+    foreach ($section["subsections"] as $subsec) {
+      if ($subsec["number"] === $s[1]) {
+        return $subsec;
+      }
+    }
+    return NULL;
+  } else {
+    return $section;
+  }
+}
+$TEXORPDFSTRING = '%\\\\texorpdfstring(\{(?:[^\{\}]+|(?1)+)*+\})\{([^\}]*)\}%';
 while (($line = fgets($handle)) !== false) {
   $matches = array();
   if (preg_match('/\\\\setcounter\{section\}\{([-0-9]*)\}/', $line, $matches)) {
@@ -49,69 +81,77 @@ while (($line = fgets($handle)) !== false) {
     $subsec_count = $matches[1];
   } else if (preg_match('/\\\\section\{(.*)\}/', $line, $matches)) {
     $sec_count ++;
-    $sec_name = preg_replace('/\\\\texorpdfstring\{[^\}]*\}\{([^\}])\}/', '\1', $matches[1]);
+    $sec_name = preg_replace($TEXORPDFSTRING, '\2', $matches[1]);
     $subsec_count = 0;
     $sections[] = array("title" => $sec_name,
-                        "number" => $sec_count,
+                        "number" => (string) $sec_count,
+                        "fullno" => $sec_count,
+                        "fulluno" => $sec_count,
                         "subsections" => array());
     $raw_count ++;
     $inverse_list[$sec_count] = $raw_count;
     $raw_list[$raw_count] = $sec_count;
   } else if (preg_match('/\\\\subsection\{(.*)\}/', $line, $matches)) {
     $subsec_count ++;
-    $subsec_name = preg_replace('/\\\\texorpdfstring\{[^\}]*\}\{([^\}]*)\}/', '\1', $matches[1]);
-    $index = count($sections) - 1;
-    $sections[$index]["subsections"][] = array("title" => $subsec_name,
-                                               "number" => $subsec_count);
+    $subsec_name = preg_replace($TEXORPDFSTRING, '\2', $matches[1]);
+    $fulluno = $sec_count."_".$subsec_count;
+    $sections[count($sections) - 1]["subsections"][] = array(
+      "title" => $subsec_name,
+      "number" => (string) $subsec_count,
+      "fullno" => $sec_count.".".$subsec_count,
+      "fulluno" => $fulluno);
     $raw_count ++;
-    $inverse_list[$sec_count."_".$subsec_count] = $raw_count;
-    $raw_list[$raw_count] = $sec_count."_".$subsec_count;
+    $inverse_list[$fulluno] = $raw_count;
+    $raw_list[$raw_count] = $fulluno;
   } else if (preg_match('/\\\\def\\\\n([a-z]*) *\\{(.*)\\}/', $line, $matches)) {
     $meta[$matches[1]] = $matches[2];
   }
 }
 fclose($handle);
-$title = $meta["part"]." - ".$meta["course"];
-include "../header.php";
 
 function genSubToc($section) {
     global $dom;
     echo "<ul class='disp-toc-sub'>";
     foreach ($section["subsections"] as $subsec) {
-      echo "<li><a href='$dom".$section["number"].'_'.$subsec["number"]."'>".$section["number"].".".$subsec["number"]." ".$subsec["title"]."</a></li>";
+      echo sprintf("<li><a href='%s%s_%s'>%s.%s %s</a></li>\n",
+        $dom, $section["number"], $subsec["number"],
+        $section["number"], $subsec["number"], $subsec["title"]);
     }
     echo "</ul>";
 }
-if (empty($content) and !($content === 0)) {
-  echo "<div class='disp-toc-header'>";
-  echo "<h1>Part ".$meta["part"]." - ".$meta["course"];
-  echo "<h2>Lectured by ".$meta["lecturer"].", ".$meta["term"]." ".$meta["year"]."</h2>";
-  echo "</div>";
-?>
-<p>This is an HTML version of my notes, generated using some horribly-written scripts and <a href="https://github.com/coolwanglu/pdf2htmlEX">pdf2htmlEX</a>. These are not gauranteed to display well, but do let me know if something is broken. Note however that I cannot help you if your browser does not support standard HTML features (eg. this part is known not to work well with w3m). You can either view the full version, or access individual sections below. If you want to download a pdf, head to the <a href="/">Notes</a> page.</p>
+if (empty($content) and !($content === "0")) {
+  $title = $meta["part"]." ".$meta["course"];
+  include "../header.php";
+  echo sprintf(<<<EOT
+<div class='disp-toc-header'>
+  <h1>Part %s - %s</h1>
+  <h2>Lectured by %s, %s %s</h2>
+</div>
 
-<p>This is still sort-of experimental, and let me know if you have any suggestions for improvement.</p>
-<?
-  echo "<h1 class='disp-toc-head'>Contents</h1>";
-  echo "<ul class='disp-toc'>";
-  echo "<li><a href='$dom"."full'>V Full version</a></li>";
+<p>This is an HTML version of the notes, generated using some horribly-written scripts and <a href="https://github.com/coolwanglu/pdf2htmlEX">pdf2htmlEX</a>. These are not guaranteed to display well, but do let me know if something is broken. Note however that I cannot help you if your browser does not support standard HTML features (eg. this part is known not to work well with w3m). You can either view all sections in a single page (Full version), or access individual sections below. If you want to download a pdf, head to the <a href="/">Notes</a> page.</p>
+
+<h1 class='disp-toc-head'>Contents</h1>
+<ul class='disp-toc'>
+  <li><a href='%sfull'>V Full version</a></li>
+EOT
+, $meta["part"], $meta["course"], $meta["lecturer"], $meta["term"], $meta["year"] , $dom);
   foreach ($sections as $section) {
-    echo "<li><a href='$dom".$section["number"]."'>".$section["number"]." ".$section["title"]."</a></li>";
+    echo "<li><a href='$dom".$section["number"]."'>".$section["number"]." ".$section["title"]."</a></li>\n";
     genSubToc($section);
   }
   echo "</ul>";
 } else if ($inverse_list[$content]) {
-  $section_numbers = explode("_", $content);
-  foreach ($sections as $section) {
-    if ($section["number"] == $section_numbers[0]) {
-      $sec = $section;
-    }
-  }
-  echo "<div class='disp-header'>";
-  echo "<p class='disp-header-left'>".$sec["number"]."<span style='padding-left:10pt;'></span>".$sec["title"]."</p>";
-  echo "<p class='disp-header-right'>".$meta["part"]." ".$meta["course"]."</p>";
-  echo "</div>";
-  echo "<hr /><br />";
+  $sec = lookupSec($content);
+  $title = $meta["part"]." ".$meta["course"]." - ".$sec["title"];
+  include "../header.php";
+  echo sprintf(<<<EOT
+<div class='disp-header'>
+<p class='disp-header-left'>%s<span style='padding-left:10pt;'></span>%s</p>
+<p class='disp-header-right'>%s %s</p>
+</div>
+<hr /><br />
+EOT
+, $sec["number"], $sec["title"], $meta["part"], $meta["course"]);
 
   if ((@include("$term/$course"."_".$inverse_list[$content])) == FALSE) {
     echo "Unable to read contents"; 
@@ -121,30 +161,45 @@ if (empty($content) and !($content === 0)) {
     echo "<h1 class='disp-toc-head'>Contents</h1>";
     genSubToc($sec);
   }
-  echo "<div class='disp-nav'>";
-  echo '<p class="disp-nav-left">';
-  if (!empty($raw_list[$inverse_list[$content] - 1]) or $raw_list[$inverse_list[$content] - 1] === 0) {
-    echo "<a href='$dom".$raw_list[$inverse_list[$content] - 1]."'>Previous</a>";
-  }
-  echo '</p>';
 
-  echo '<p class="disp-nav-right">';
-  echo "<a href='$dom'>Table of Contents</a>";
-  echo "</p>";
+  echo <<<EOT
+<nav class='disp-nav'>
+<p class='disp-nav-left'>
+EOT;
 
-  echo '<p class="disp-nav-right">';
-  if (!empty($raw_list[$inverse_list[$content] + 1])) {
-    echo '<a href="'.$raw_list[$inverse_list[$content] + 1].'">Next</a>';
+  $prev = lookupObj($raw_list[$inverse_list[$content] - 1]);
+  if ($prev !== NULL) {
+    echo "<a rel='prev' href='$dom".$prev["fulluno"]."' title='".$prev["fullno"]." ".$prev["title"]."'>&lt; ".$prev["fullno"]."</a>";
   }
-  echo "</p>";
-  echo "</div>";
+
+  echo sprintf(<<<EOT
+</p>
+<p class="disp-nav-center">
+<a href='%s'>Table of Contents</a>
+</p>
+<p class="disp-nav-right">
+EOT
+, $dom);
+
+  $next = lookupObj($raw_list[$inverse_list[$content] + 1]);
+  if ($next !== NULL) {
+    echo "<a rel='next' href='$dom".$next["fulluno"]."' title='".$next["fullno"]." ".$next["title"]."'>".$next["fullno"]." &gt;</a>";
+  }
+  echo <<<EOT
+</p>
+</nav>
+EOT;
 } else if ($content === "full") {
+  $title = $meta["part"]." ".$meta["course"]." (Full)";
+  include "../header.php";
+  echo <<<EOT
+EOT;
   include("$term/$course"."_full");
 } else {
-?>
-  <p class="error-header">Error 404</p>
-  <p class="error">You have probably done something bad.</p>
-<?php
+  echo <<<EOT
+<p class="error-header">Error 404</p>
+<p class="error">You have probably done something bad.</p>
+EOT;
 }
-?>
-<?php include "../footer.php"?>
+
+include "../footer.php"?>
