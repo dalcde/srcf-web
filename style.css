@@ -201,3 +201,6 @@ div.pf.w0 {
     color: red;
     font-weight: bold;
 }
+p.citation{
+    font-style:italic;
+}

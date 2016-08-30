@@ -32,7 +32,7 @@ foreach ($regex as $item=>$object) {
     if (basename($item) == "header.tex") {
         continue;
     }
-    if (!preg_match('/notes\/I[ABI]_[MLE]/', $item)){
+    if (!preg_match('/notes\/I[ABI]+_[MLE]/', $item)){
         continue;
     }
     $results = array();

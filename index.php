@@ -2,20 +2,10 @@
 $title = "Maths Lecture Notes";
 include "header.php"?>
 
-<p class="notice-alert">From next year onwards, the lecture notes will be uploaded only after the courses finish, because people seem to be using them to skip lectures. <a href="/about">Click here</a> to see more.</p>
-
 <p>Below are the notes I took during lectures in Cambridge. None of this is official (unless otherwise specified). Included as well are stripped-down versions (eg. definition-only; script-generated and doesn't necessarily make sense), example sheets, and the source code. The source code has to be compiled with <a href="notes/header.tex"><code>header.tex</code></a>, and is also available on <a href="http://github.com/dalcde/cam-notes">GitHub</a>.</p>
-<?php
-  if ($termtime) {
-?>
-<p>Incomplete or unready notes are <span class="notes-item notes-item-old">greyed out</span>. The titles are <span class="notes-item notes-item-unready">bolded</span> if they have been updated since the most recent lecture.</p>
-<?php
-  } else {
-?>
-<p>Unready notes are <span class="notes-item notes-item-old">greyed out</span>.</p>
-<?php
-  }
-?>
+<?php #<p>Unready notes are <span class="notes-item notes-item-old">greyed out</span>.</p>?>
+
+<p class="notice-alert">From next year onwards, the lecture notes will be uploaded only after the courses finish, because people seem to be using them to skip lectures. <a href="/about">Click here</a> to see more.</p>
 
 <?php include "courses_list.php"; ?>
 
