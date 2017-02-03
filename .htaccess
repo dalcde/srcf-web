@@ -4,5 +4,9 @@ Options FollowSymLinks MultiViews
 ErrorDocument 403 /error.php
 ErrorDocument 404 /error.php
 
+RedirectMatch 301 /about.* /taking_down_notes 
+Redirect 301 /definitions /a/definitions
+
 RewriteEngine on
 RewriteRule ^html_notes/(.*)$ /h/$1 [R=301,NC,L]
+RewriteRule ^notes/(IA|IB|II|III)_L/.*$ /taken_down [R=302,L]

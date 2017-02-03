@@ -1,4 +1,6 @@
 <?php
+$CURRENT_TERM="Lent";
+
 function sort_terms($a, $b) {
     if ($a == $b) {
         return 0;
@@ -129,8 +131,12 @@ foreach ($subjects as $part => $terms) {
             }
             $link = substr($path, 0, -4);
             $slink = substr($link, 6);
-            echo "<span class='$style'><a href='/h/$slink'>$course</a> <span class='notes-additional'>($year, $lecturer)</span> -&nbsp;";
-
+            if ($term == $CURRENT_TERM) {
+              echo "<span class='gone'>$course <span class='notes-additional'>($year, $lecturer)</span> -&nbsp;";
+            }
+            else {
+              echo "<span class='$style'><a href='/h/$slink'>$course</a> <span class='notes-additional'>($year, $lecturer)</span> -&nbsp;";
+            }
 
             foreach ($PROPS as $name => $stuff) {
                 $ext = $stuff[0];
@@ -139,13 +145,24 @@ foreach ($subjects as $part => $terms) {
                 if (file_exists ($full)) {
                     $time = date("Y-m-d H:i:s O", filemtime($full));
 
-                    echo "<a href='$full' title='$title (Last edited $time)'>$name</a>&nbsp;";
+                    if ($term == $CURRENT_TERM) {
+                      echo "<span title='Taken down, see above'>$name</span>&nbsp;";
+                    } else {
+                      echo "<a href='$full' title='$title (Last edited $time)'>$name</a>&nbsp;";
+                    }
                 }
             }
 
             if (isset($details["official"])) {
-                $official = $details["official"];
+              $official = $details["official"];
+              if ($term == $CURRENT_TERM) {
+                echo "<span title='You can Google it yourself'>official-notes</a>";
+              } else {
                 echo "<a href='$official' title='Official notes'>official-notes</a>";
+              }
+            }
+            if ($term == $CURRENT_TERM) {
+              echo "</span>";
             }
             echo "</span><br />";
         }

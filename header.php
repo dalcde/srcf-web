@@ -1,8 +1,7 @@
-<?php $termtime=false?>
+<?php $termtime=true?>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="description" content="Cambridge Mathematics Lecture Notes" />
   <meta name="author" content="Dexter Chua" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
@@ -15,7 +14,7 @@
 <body>
 <header>
   <nav id="header-content">
-    <a href="/home">Home</a>&nbsp;<a href="/">Notes</a>&nbsp;<a href="/faq">FAQ</a>&nbsp;<a href="/history">Hist</a>
+    <a href="/home">Home</a>&nbsp;<a href="/">Notes</a>&nbsp;<a href="/history">Hist</a>
   </nav>
 </header>
 <div id="main">

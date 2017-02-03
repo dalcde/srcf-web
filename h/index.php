@@ -20,6 +20,10 @@ if (empty($ALIASES[$request[2]])) {
   $course = $request[3];
   $content = $request[4];
   $dom="/h/$term/$course/";
+  if (preg_match('/.*L/', $term)) {
+    header('Location: /taken_down');
+    die();
+  }
 } else {
   $term = $ALIASES[$request[2]][0];
   $course = $ALIASES[$request[2]][1];
@@ -31,7 +35,7 @@ function escape_now() {
   include("../error.php");
   exit;
 }
-if (!preg_match('/^I[ABI]_[MLE]$/', $term) or !preg_match('/^[a-z_]*$/', $course)){
+if (!preg_match('/^I[ABI]*_[MLE]$/', $term) or !preg_match('/^[a-z_]*$/', $course)){
   escape_now();
 }
 $sections = array();
